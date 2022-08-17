@@ -2,11 +2,11 @@ package basic;
 
 import java.util.Scanner;
 
-public class SumOfArray {
+public class DecrementArrayValues {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("=========================================================================");
-        System.out.println("We are find sum of all elements in the given array..!");
+        System.out.println("We are find average of all elements in the given array..!");
         System.out.println("==========================================================================");
 
         System.out.println("Please Enter the no. of test cases to be executed: ");
@@ -21,17 +21,22 @@ public class SumOfArray {
             for(int i=0; i<n; i++)
                 arr[i] = sc.nextInt();
 
-            System.out.println("Sum of all elements of an array: " + sumOfArray(arr));
+            decrementArrayValues(arr);
 
             t--;
         }
     }
 
-    public static int sumOfArray(int arr[]){
-        int sum = 0;
-        for(int i = 0; i<arr.length; i++)
-            sum += arr[i];
+    public static void decrementArrayValues(int arr[]){
+        for(int i=0; i<arr.length; i++)
+            arr[i] -= 1;
+        traversal(arr);
 
-        return sum;
+    }
+
+    public static void traversal(int arr[]){
+        for(int i=0; i<arr.length; i++)
+            System.out.print(arr[i] + " ");
+        System.out.println();
     }
 }

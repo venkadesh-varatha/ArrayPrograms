@@ -2,11 +2,11 @@ package basic;
 
 import java.util.Scanner;
 
-public class CheckArrayIsSorted {
+public class CountDistinctElements {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("=========================================================================");
-        System.out.println("We are checking the given array is sorted in ascending order or not..!");
+        System.out.println("We are counting the distinct elements from the given array..!");
         System.out.println("==========================================================================");
 
         System.out.println("Please Enter the no. of test cases to be executed: ");
@@ -21,19 +21,43 @@ public class CheckArrayIsSorted {
             for(int i=0; i<n; i++)
                 arr[i] = sc.nextInt();
 
-            System.out.println("The given array is sorted: " + isArraySorted(arr));
+            System.out.println("No. of distinct elements in the given array is : " +  countDistinctElements(arr) );
+            System.out.println("No. of distinct elements in the given array is : " +  countDistinctElementsMethod2(arr) );
 
             t--;
         }
     }
 
-    public static boolean isArraySorted(int []arr){
+    public static int countDistinctElements(int []arr){
+      int count = 0;
+      for(int i=0; i<arr.length; i++){
+          boolean isDistinct = true;
+          for(int j=i+1; j<arr.length; j++){
+              if(arr[i] == arr[j]){
+                  isDistinct = false;
+                  break;
+              }
+          }
+          if(isDistinct)
+              count++;
+      }
+      return count;
+    }
 
-        for(int i=0; i<arr.length-1; i++){
-            if(arr[i] > arr[i+1])
-                return false;
+    public static int countDistinctElementsMethod2(int arr[]){
+        int count = 0;
+        for(int i=0; i<arr.length; i++){
+            boolean isDistinct = true;
+            for(int j=i-1; j>=0; j--){
+                if(arr[i] == arr[j]){
+                    isDistinct = false;
+                    break;
+                }
+            }
+            if(isDistinct){
+                count++;
+            }
         }
-
-        return true;
+        return count;
     }
 }
